@@ -5,11 +5,13 @@ using UnityEngine;
 public class KnightMovement : MonoBehaviour
 
 {
-    private bool swordIsRight;
+    [SerializeField] bool swordIsRight;
 
     private Rigidbody2D rb2d;               //Holds a reference to the Rigidbody2D component of the bird.
     private bool canJump = true;
     private SpriteRenderer facing;
+
+    [SerializeField] SpriteRenderer swords;
 
     private Animator walkingDir;
 
@@ -18,6 +20,8 @@ public class KnightMovement : MonoBehaviour
 
     [SerializeField] int speed = 40;
     [SerializeField] Sprite[] directionFacing;
+
+    [SerializeField] Sprite[] swordModle;
 
     //[SerializeField] AnimationClip[] walking;
 
@@ -30,6 +34,9 @@ public class KnightMovement : MonoBehaviour
         facing = gameObject.GetComponent<SpriteRenderer>();
 
         walkingDir = gameObject.GetComponent<Animator>();
+
+        swords = sword.GetComponent<SpriteRenderer>();
+
     }
 
     void Update()
@@ -44,7 +51,7 @@ public class KnightMovement : MonoBehaviour
             walkingDir.Play("WalkRight");
 
             facing.sprite = directionFacing[0];
-
+            swords.sprite = swordModle[0];
             sword.transform.localPosition = new Vector2(4.4f,3.1f);
             sword.transform.localRotation = Quaternion.Euler(0, 0, 0);
 
@@ -71,6 +78,7 @@ public class KnightMovement : MonoBehaviour
             walkingDir.Play("WalkLeft");
 
             facing.sprite = directionFacing[1];
+            swords.sprite = swordModle[0];
             sword.transform.localPosition = new Vector2(-0.79f, 3.1f);
             sword.transform.localRotation = Quaternion.Euler(0, 180f, 0);
             //go left
@@ -86,7 +94,12 @@ public class KnightMovement : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-        
+            Debug.Log("Click");
+
+                swords.sprite = swordModle[1];
+
+
+         
         }
 
 
