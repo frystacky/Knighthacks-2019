@@ -5,6 +5,8 @@ using UnityEngine;
 public class KnightMovement : MonoBehaviour
 
 {
+    private bool swordIsRight;
+
     private Rigidbody2D rb2d;               //Holds a reference to the Rigidbody2D component of the bird.
     private bool canJump = true;
     private SpriteRenderer facing;
@@ -38,6 +40,7 @@ public class KnightMovement : MonoBehaviour
         //set y velocity poitive
         if (Input.GetKey(KeyCode.D))
         {
+            swordIsRight = true;
             walkingDir.Play("WalkRight");
 
             facing.sprite = directionFacing[0];
@@ -53,15 +56,18 @@ public class KnightMovement : MonoBehaviour
         if(Input.GetKeyUp(KeyCode.D))
         {
             walkingDir.Play("Ideal");
+            facing.sprite = directionFacing[0];
         }
         if (Input.GetKeyUp(KeyCode.A))
         {
             walkingDir.Play("Ideal");
+            facing.sprite = directionFacing[1];
         }
 
 
         if (Input.GetKey(KeyCode.A))
         {
+            swordIsRight = false;
             walkingDir.Play("WalkLeft");
 
             facing.sprite = directionFacing[1];
@@ -77,6 +83,13 @@ public class KnightMovement : MonoBehaviour
             walkingDir.Play("Ideal");
             rb2d.velocity = new Vector2(rb2d.velocity.x, rb2d.velocity.y + 70);
        }
+
+        if (Input.GetMouseButtonDown(0))
+        {
+        
+        }
+
+
 
     }
 
