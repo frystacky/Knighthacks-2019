@@ -29,6 +29,8 @@ public class KnightMovement : MonoBehaviour
 
     [SerializeField] Sprite[] swordModle;
 
+    LevelHandler getMeOutOfHere;
+
     //[SerializeField] AnimationClip[] walking;
 
 
@@ -43,10 +45,18 @@ public class KnightMovement : MonoBehaviour
 
         swords = sword.GetComponent<SpriteRenderer>();
 
+        getMeOutOfHere = FindObjectOfType<LevelHandler>();
+
     }
 
     void Update()
     {
+
+        if(hp <= 0)
+        {
+            getMeOutOfHere.ToMainMenu();
+        }
+        
         HpDisplay.text = hp.ToString();
 
         //float yval = rb2d.velocity.y;
@@ -116,5 +126,10 @@ public class KnightMovement : MonoBehaviour
         {
             canJump = false;
         }
+    }
+
+    public void Damage(int damage)
+    {
+        hp -= damage;
     }
 }

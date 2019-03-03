@@ -15,6 +15,7 @@ public class AttackScript : MonoBehaviour
     void Awake()
     {
         attackCol.enabled = false;
+        attackCol.GetComponent<SpriteRenderer>().enabled = false;
     }
 
     // Update is called once per frame
@@ -25,6 +26,7 @@ public class AttackScript : MonoBehaviour
             attacking = true;
             attackTimer = attackCd;
             attackCol.enabled = true;
+            attackCol.GetComponent<SpriteRenderer>().enabled = true;
         }
 
         if (attacking)
@@ -37,6 +39,7 @@ public class AttackScript : MonoBehaviour
             {
                 attacking = false;
                 attackCol.enabled = false;
+                attackCol.GetComponent<SpriteRenderer>().enabled = false;
             }
         }
     }

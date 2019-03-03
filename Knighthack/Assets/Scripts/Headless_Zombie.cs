@@ -17,6 +17,7 @@ public class Headless_Zombie : MonoBehaviour
     float right_bound;
     bool goingLeft = true;
     private int HP = 50;
+    int damage = 20;
 
 
     // Start is called before the first frame update
@@ -86,6 +87,8 @@ public class Headless_Zombie : MonoBehaviour
         if (collide.tag == "Player")
         {
             Rigidbody2D knight_rb2d = collide.GetComponent<Rigidbody2D>();
+
+            player.SendMessageUpwards("Damage", damage);
 
             //knockback right
             if (xyz.x < knight_xyz.x)

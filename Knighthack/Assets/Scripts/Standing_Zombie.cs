@@ -14,6 +14,7 @@ public class Standing_Zombie : MonoBehaviour
     bool chasing = false;
     int stuck_frames = 0;
     private int HP = 30;
+    int damage = 20;
 
     // Start is called before the first frame update
     void Start()
@@ -84,6 +85,8 @@ public class Standing_Zombie : MonoBehaviour
         if (collide.tag == "Player")
         {
             Rigidbody2D knight_rb2d = collide.GetComponent<Rigidbody2D>();
+
+            player.SendMessageUpwards("Damage", damage);
 
             //knockback right
             if (xyz.x < knight_xyz.x)
