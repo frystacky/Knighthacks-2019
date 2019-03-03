@@ -5,6 +5,19 @@ using UnityEngine.SceneManagement;
 
 public class LevelHandler : MonoBehaviour
 {
+    private bool gameMenu = false;
+
+    public GameObject menu;
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+           
+        }
+    }
+
+
     public void ToLevel1()
     {
         SceneManager.LoadScene(1);
