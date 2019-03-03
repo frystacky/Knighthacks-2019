@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MenuGUI : MonoBehaviour
 {
-    private bool gameMenu = true;
+    bool gameMenu = true;
 
     public GameObject menu;
 
@@ -24,5 +24,10 @@ public class MenuGUI : MonoBehaviour
             }
         }
         
+    }
+
+    public void SetBool()
+    {
+        gameMenu = true;
     }
 }
