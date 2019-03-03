@@ -145,3 +145,4 @@ MonoBehaviour:
   directionFacing:
   - {fileID: 21300000, guid: 2d9d608e48d032e419ced3ee4093d441, type: 3}
   - {fileID: 21300000, guid: a2f33a1f9cacf5d40addd1f960d273a6, type: 3}
+  - {fileID: 21300000, guid: be58505a2dcacd24f84628f3a2368689, type: 3}
