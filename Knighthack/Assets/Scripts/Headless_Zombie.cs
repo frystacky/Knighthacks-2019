@@ -5,11 +5,12 @@ using UnityEngine;
 public class Headless_Zombie : MonoBehaviour
 {
     [SerializeField] private float speed;
+    [SerializeField] private int range;
+    [SerializeField] Sprite[] directionFacing;
     GameObject player;
     Rigidbody2D rb2d;
     Vector3 xyz;
     Vector3 knight_xyz;
-    [SerializeField] Sprite[] directionFacing;
     private SpriteRenderer facing;
     int stuck_frames = 0;
     float left_bound;
@@ -25,8 +26,8 @@ public class Headless_Zombie : MonoBehaviour
         rb2d = GetComponent<Rigidbody2D>();
         facing = gameObject.GetComponent<SpriteRenderer>();
         xyz = transform.position;
-        left_bound = xyz.x - 20;
-        right_bound = xyz.x + 20;
+        left_bound = xyz.x - range;
+        right_bound = xyz.x + range;
     }
 
     // Update is called once per frame
