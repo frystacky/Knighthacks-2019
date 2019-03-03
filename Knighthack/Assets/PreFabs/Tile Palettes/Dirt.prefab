@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8771049370740859992}
   m_Layer: 31
   m_Name: Layer1
-  m_TagString: Untagged
+  m_TagString: Dirt
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -185,7 +185,7 @@ Tilemap:
   - m_RefCount: 8
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   - m_RefCount: 1
-    m_Data: {r: 0.9706066, g: 0.6242701, b: 0.6904205, a: 1}
+    m_Data: {r: 0.8610787, g: 0.4886422, b: 0.5151985, a: 1}
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Origin: {x: -1, y: -2, z: 0}
@@ -280,7 +280,7 @@ GameObject:
   - component: {fileID: 8706138131955679947}
   m_Layer: 31
   m_Name: Dirt
-  m_TagString: Untagged
+  m_TagString: Dirt
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
