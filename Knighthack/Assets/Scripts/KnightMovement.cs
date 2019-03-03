@@ -1,11 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
 
 public class KnightMovement : MonoBehaviour
 
 {
     [SerializeField] bool swordIsRight;
+
+    public int hp = 100;                    // players hp
+    [SerializeField] Text HpDisplay;
+
 
     private Rigidbody2D rb2d;               //Holds a reference to the Rigidbody2D component of the bird.
     private bool canJump = true;
@@ -41,6 +47,8 @@ public class KnightMovement : MonoBehaviour
 
     void Update()
     {
+        HpDisplay.text = hp.ToString();
+
         //float yval = rb2d.velocity.y;
         rb2d.velocity = new Vector2(rb2d.velocity.x, rb2d.velocity.y);
 
