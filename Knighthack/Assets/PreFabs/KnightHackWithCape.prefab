@@ -25,8 +25,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1961932335}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.09, y: 1.7400055, z: 0}
-  m_LocalScale: {x: 9, y: 9, z: 9}
+  m_LocalPosition: {x: 4.4, y: 3.1, z: 0}
+  m_LocalScale: {x: 15, y: 15, z: 15}
   m_Children: []
   m_Father: {fileID: 8429981846363027691}
   m_RootOrder: 1
@@ -305,7 +305,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0032fc30b6780e44a8dbdf43e9a8799f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkingDir: {fileID: 0}
+  sword: {fileID: 1961932335}
   speed: 25
   directionFacing:
   - {fileID: 21300000, guid: 8be0476d2b1cfef4ab39cbd3cbbf14bc, type: 3}
