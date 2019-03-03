@@ -16,6 +16,7 @@ public class Headless_Zombie : MonoBehaviour
     float left_bound;
     float right_bound;
     bool goingLeft = true;
+    private int HP = 50;
 
 
     // Start is called before the first frame update
@@ -33,6 +34,11 @@ public class Headless_Zombie : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if(HP <= 0)
+        {
+            Destroy(gameObject);
+        }
 
         //get zombie unstuck if not moving in x
         if (xyz.x == transform.position.x)
@@ -91,5 +97,10 @@ public class Headless_Zombie : MonoBehaviour
                 knight_rb2d.velocity = new Vector2(-50, 75);
             }
         }
+    }
+
+    public void Damage(int damage)
+    {
+        HP -= damage;
     }
 }

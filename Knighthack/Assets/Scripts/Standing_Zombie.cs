@@ -13,6 +13,7 @@ public class Standing_Zombie : MonoBehaviour
     private SpriteRenderer facing;
     bool chasing = false;
     int stuck_frames = 0;
+    private int HP = 30;
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +28,11 @@ public class Standing_Zombie : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if (HP <= 0)
+        {
+            Destroy(gameObject);
+        }
 
         //get zombie unstuck if chasing and not moving in xd
         if (chasing && xyz.x == transform.position.x)
@@ -90,4 +96,10 @@ public class Standing_Zombie : MonoBehaviour
             }
         }
     }
+
+    public void Damage(int damage)
+    {
+        HP -= damage;
+    }
+
 }

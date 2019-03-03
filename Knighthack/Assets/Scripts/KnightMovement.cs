@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class KnightMovement : MonoBehaviour
 
 {
-    [SerializeField] bool swordIsRight;
+    public bool swordIsRight = true;
 
     public int hp = 100;                    // players hp
     [SerializeField] Text HpDisplay;
@@ -99,19 +99,6 @@ public class KnightMovement : MonoBehaviour
             walkingDir.Play("Ideal");
             rb2d.velocity = new Vector2(rb2d.velocity.x, rb2d.velocity.y + 70);
        }
-
-        if (Input.GetMouseButtonDown(0))
-        {
-            Debug.Log("Click");
-
-                swords.sprite = swordModle[1];
-
-
-         
-        }
-
-
-
     }
 
     void OnCollisionEnter2D(Collision2D col)
