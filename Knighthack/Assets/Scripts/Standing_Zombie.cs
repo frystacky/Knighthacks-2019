@@ -19,7 +19,7 @@ public class Standing_Zombie : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.FindGameObjectsWithTag("Player")[0];
+        player = GameObject.FindGameObjectWithTag("Player");
         rb2d = GetComponent<Rigidbody2D>();
         facing = gameObject.GetComponent<SpriteRenderer>();
         xyz = transform.position;

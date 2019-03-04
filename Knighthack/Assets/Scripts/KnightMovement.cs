@@ -5,35 +5,30 @@ using TMPro;
 using UnityEngine.UI;
 
 public class KnightMovement : MonoBehaviour
-
 {
-    public bool swordIsRight = true;
+    //animation control variables
+    private bool swordIsRight = true;
+    private bool isMoving = false;
 
-    public int hp = 100;                    // players hp
+    public int hp = 100;
     [SerializeField] Text HpDisplay;
 
 
-    private Rigidbody2D rb2d;               //Holds a reference to the Rigidbody2D component of the bird.
+    private Rigidbody2D rb2d;
     private bool canJump = true;
+    bool knockback = false;
     private SpriteRenderer facing;
-
-    [SerializeField] SpriteRenderer swords;
-
-    private Animator walkingDir;
+    private Animator knightMovementAnimator;
 
     [SerializeField] GameObject sword;
 
 
     [SerializeField] int speed = 40;
     [SerializeField] Sprite[] directionFacing;
-
     [SerializeField] Sprite[] swordModle;
+    [SerializeField] SpriteRenderer swords;
 
     LevelHandler getMeOutOfHere;
-
-    //[SerializeField] AnimationClip[] walking;
-
-
 
     void Start()
     {
@@ -41,7 +36,7 @@ public class KnightMovement : MonoBehaviour
         rb2d = GetComponent<Rigidbody2D>();
         facing = gameObject.GetComponent<SpriteRenderer>();
 
-        walkingDir = gameObject.GetComponent<Animator>();
+        knightMovementAnimator = gameObject.GetComponent<Animator>();
 
         swords = sword.GetComponent<SpriteRenderer>();
 
@@ -59,56 +54,64 @@ public class KnightMovement : MonoBehaviour
         
         HpDisplay.text = hp.ToString();
 
-        //float yval = rb2d.velocity.y;
-        rb2d.velocity = new Vector2(rb2d.velocity.x, rb2d.velocity.y);
-
         //set y velocity poitive
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.D) && !knockback)
         {
-            swordIsRight = true;
-            walkingDir.Play("WalkRight");
+            //update speed if not already moving right
+            if(rb2d.velocity.x < speed)
+            {
+                rb2d.velocity = new Vector2(speed, rb2d.velocity.y);
+            }
 
+            swordIsRight = true;
+            isMoving = true;
             facing.sprite = directionFacing[0];
             swords.sprite = swordModle[0];
-            sword.transform.localPosition = new Vector2(4.4f,3.1f);
+            sword.transform.localPosition = new Vector2(4.4f, 3.1f);
             sword.transform.localRotation = Quaternion.Euler(0, 0, 0);
 
-            //go right
-            rb2d.velocity = new Vector2(speed, rb2d.velocity.y);
-            
         }
-
-        if(Input.GetKeyUp(KeyCode.D))
+        else if (Input.GetKeyUp(KeyCode.D) && !knockback)
         {
-            walkingDir.Play("Ideal");
             facing.sprite = directionFacing[0];
+            isMoving = false;
+            if (rb2d.velocity.x >= speed*0.9)
+            {
+                rb2d.velocity = new Vector2(rb2d.velocity.x - speed, rb2d.velocity.y);
+            }
         }
-        if (Input.GetKeyUp(KeyCode.A))
+        else if (Input.GetKey(KeyCode.A) && !knockback)
         {
-            walkingDir.Play("Ideal");
-            facing.sprite = directionFacing[1];
-        }
+            //update speed if not already moving left
+            if (rb2d.velocity.x > -speed)
+            {
+                rb2d.velocity = new Vector2(-speed, rb2d.velocity.y);
+            }
 
-
-        if (Input.GetKey(KeyCode.A))
-        {
             swordIsRight = false;
-            walkingDir.Play("WalkLeft");
-
+            isMoving = true;
             facing.sprite = directionFacing[1];
             swords.sprite = swordModle[0];
             sword.transform.localPosition = new Vector2(-0.79f, 3.1f);
             sword.transform.localRotation = Quaternion.Euler(0, 180f, 0);
-            //go left
-            rb2d.velocity = new Vector2(-speed, rb2d.velocity.y);
-
+        }
+        else if (Input.GetKeyUp(KeyCode.A) && !knockback)
+        {
+            facing.sprite = directionFacing[1];
+            isMoving = false;
+            if (rb2d.velocity.x >= -speed*1.5)
+            {
+                rb2d.velocity = new Vector2(rb2d.velocity.x + speed, rb2d.velocity.y);
+            }
         }
 
         if (Input.GetKeyDown("space") && canJump)
-        {
-            walkingDir.Play("Ideal");
+        { 
             rb2d.velocity = new Vector2(rb2d.velocity.x, rb2d.velocity.y + 70);
-       }
+        }
+
+        knightMovementAnimator.SetBool("facingRight", swordIsRight);
+        knightMovementAnimator.SetBool("inMotion", isMoving);
     }
 
     void OnCollisionEnter2D(Collision2D col)
@@ -116,6 +119,7 @@ public class KnightMovement : MonoBehaviour
         if (col.gameObject.tag == "Dirt")
         {
             canJump = true;
+            knockback = false;
         }
 
     }
@@ -131,5 +135,11 @@ public class KnightMovement : MonoBehaviour
     public void Damage(int damage)
     {
         hp -= damage;
+        knockback = true;
+    }
+
+    public bool getDirection()
+    {
+        return swordIsRight;
     }
 }

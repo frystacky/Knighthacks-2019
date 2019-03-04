@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Dirt
   - Zombie
+  - Wall
   layers:
   - Default
   - TransparentFX
